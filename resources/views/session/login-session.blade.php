@@ -4,7 +4,7 @@
 
   <main class="main-content  mt-0">
     <section>
-      <div class="page-header min-vh-75">
+      <div class="page-header min-vh-65">
         <div class="container">
           <div class="row">
             <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
@@ -13,7 +13,7 @@
                   <h3 class="font-weight-bolder text-info text-gradient">Welcome back</h3>
                   <p class="mb-0">Create a new acount<br></p>
                   <p class="mb-0">OR Sign in with these credentials:</p>
-                  <p class="mb-0">Email <b>admin@softui.com</b></p>
+                  <p class="mb-0">Email <b>sekolah_222291@gmail.com</b></p>
                   <p class="mb-0">Password <b>secret</b></p>
                 </div>
                 <div class="card-body">
@@ -21,7 +21,7 @@
                     @csrf
                     <label>Email</label>
                     <div class="mb-3">
-                      <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="admin@softui.com" aria-label="Email" aria-describedby="email-addon">
+                      <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="sekolah_222291@gmail.com" aria-label="Email" aria-describedby="email-addon">
                       @error('email')
                         <p class="text-danger text-xs mt-2">{{ $message }}</p>
                       @enderror
@@ -43,9 +43,9 @@
                   </form>
                 </div>
                 <div class="card-footer text-center pt-0 px-lg-2 px-1">
-                <small class="text-muted">Forgot you password? Reset you password 
+                <!-- <small class="text-muted">Forgot you password? Reset you password 
                   <a href="/login/forgot-password" class="text-info text-gradient font-weight-bold">here</a>
-                </small>
+                </small> -->
                   <p class="mb-4 text-sm mx-auto">
                     Don't have an account?
                     <a href="register" class="text-info text-gradient font-weight-bold">Sign up</a>
