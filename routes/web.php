@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BarangController_222291;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InfoUserController;
@@ -68,6 +69,14 @@ Route::group(['middleware' => 'auth'], function () {
 		return view('dashboard');
 	})->name('sign-up');
 });
+
+Route::get('/barang', [BarangController_222291::class, 'index'])->name('barang.index');
+Route::get('/barang/add', [BarangController_222291::class, 'create'])->name('barang.create');
+Route::post('/barang', [BarangController_222291::class, 'store'])->name('barang.store');
+Route::get('/barang/{id}', [BarangController_222291::class, 'show'])->name('barang.show');
+Route::get('/barang/edit/{id}', [BarangController_222291::class, 'edit'])->name('barang.edit');
+Route::put('/barang/{id}', [BarangController_222291::class, 'update'])->name('barang.update');
+Route::delete('/barang/delete{id}', [BarangController_222291::class, 'destroy'])->name('barang.destroy');
 
 
 
