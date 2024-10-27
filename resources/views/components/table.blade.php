@@ -12,7 +12,6 @@
                         <a href="{{ $createRoute }}" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp;
                             Tambah {{ $title }}</a>
                     @endif
-
                 </div>
             </div>
             <div class="card-body px-0 pt-0 pb-2">
@@ -26,11 +25,9 @@
                                     </th>
                                 @endforeach
 
-                                <th
-                                    class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                     Action
                                 </th>
-
                             </tr>
                         </thead>
                         <tbody>
@@ -39,20 +36,24 @@
                                     @foreach ($columns as $column)
                                         <td class="text-center">
                                             @if ($column['type'] === 'image')
-                                                <img src="{{ $item->{$column['field']} }}"
-                                                    class="avatar avatar-sm me-3">
+                                                <img src="{{ $item->{$column['field']} }}" class="avatar avatar-sm me-3">
                                             @else
-                                                <p class="text-xs font-weight-bold mb-0">{{ $item->{$column['field']} }}
-                                                </p>
+                                                @if (strpos($column['field'], '.') !== false)
+                                                    {{-- Handle nested fields for category --}}
+                                                    <p class="text-xs font-weight-bold mb-0">
+                                                        {{ data_get($item, $column['field']) ?? 'Tanpa Kategori' }}
+                                                    </p>
+                                                @else
+                                                    <p class="text-xs font-weight-bold mb-0">{{ $item->{$column['field']} }}</p>
+                                                @endif
                                             @endif
                                         </td>
                                     @endforeach
 
-                                    @if (session('role') === 'admin')
-                                        <td class="text-center">
+                                    <td class="text-center">
+                                        @if (session('role') === 'admin')
                                             <a href="{{ route($editRoute, $item->id_barang_222291) }}" class="mx-3"
-                                                data-bs-toggle="tooltip"
-                                                data-bs-original-title="Edit {{ $title }}">
+                                                data-bs-toggle="tooltip" data-bs-original-title="Edit {{ $title }}">
                                                 <i class="fas fa-user-edit text-secondary"></i>
                                             </a>
                                             <span>
@@ -65,15 +66,11 @@
                                                     @method('DELETE')
                                                 </form>
                                             </span>
-                                        </td>
-                                    @endif
-                                    @if (session('role') === 'user')
-                                        <td>
-                                            <a href="{{ $loanRoute }}"class="btn bg-gradient-primary btn-sm mb-0"
-                                                type="button">&nbsp;
-                                                Sewa</a>
-                                        </td>
-                                    @endif
+                                        @elseif (session('role') === 'user')
+                                            <a href="{{ $loanRoute }}" class="btn bg-gradient-primary btn-sm mb-0"
+                                                type="button">&nbsp; Sewa</a>
+                                        @endif
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

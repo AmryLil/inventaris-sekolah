@@ -11,15 +11,15 @@ class BarangController_222291 extends Controller
     // 1. Menampilkan daftar barang
     public function index()
     {
-        $barang = Barang_222291::with('kategori')->get(); // Mengambil barang beserta kategori
-        return view('barang.index', compact('barang'));
+        $barang = Barang_222291::with('kategori')->get(); // Load barang with categories
+        return view('barang.index', compact('barang')); // Pass to view
     }
 
     // 2. Menampilkan form tambah barang
     public function create()
     {
-        $kategori = Kategori_222291::all(); // Mengambil semua kategori
-        return view('barang.add', compact('kategori')); // Mengirim kategori ke view
+        $kategori = Kategori_222291::all(); // Fetch all categories
+        return view('barang.add', compact('kategori')); // Pass to view
     }
 
     // 3. Menyimpan barang baru
