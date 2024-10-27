@@ -27,14 +27,14 @@ return new class extends Migration
         });
 
         // Tabel pengguna_222291
-        Schema::create('pengguna_222291', function (Blueprint $table) {
-            $table->id('id_pengguna_222291'); // Kolom ID unik untuk pengguna
-            $table->string('nama_pengguna_222291'); // Nama pengguna
-            $table->string('email_pengguna_222291')->unique(); // Email pengguna
-            $table->string('password_pengguna_222291'); // Kata sandi pengguna
-            $table->string('role_pengguna_222291'); // Peran pengguna (admin, staf, dll.)
-            $table->timestamps();
-        });
+        // Schema::create('pengguna_222291', function (Blueprint $table) {
+        //     $table->id('id_pengguna_222291'); // Kolom ID unik untuk pengguna
+        //     $table->string('nama_pengguna_222291'); // Nama pengguna
+        //     $table->string('email_pengguna_222291')->unique(); // Email pengguna
+        //     $table->string('password_pengguna_222291'); // Kata sandi pengguna
+        //     $table->string('role_pengguna_222291'); // Peran pengguna (admin, staf, dll.)
+        //     $table->timestamps();
+        // });
 
         // Tabel barang_222291
         Schema::create('barang_222291', function (Blueprint $table) {
@@ -60,7 +60,7 @@ return new class extends Migration
         Schema::create('peminjaman_222291', function (Blueprint $table) {
             $table->id('id_peminjaman_222291'); // Kolom ID unik untuk peminjaman
             $table->unsignedBigInteger('barang_id_222291'); // Foreign Key untuk barang
-            $table->unsignedBigInteger('pengguna_id_222291'); // Foreign Key untuk pengguna
+            // $table->unsignedBigInteger('pengguna_id_222291'); // Foreign Key untuk pengguna
             $table->date('tanggal_peminjaman_222291'); // Tanggal peminjaman barang
             $table->date('tanggal_pengembalian_222291')->nullable(); // Tanggal pengembalian barang
             $table->string('status_peminjaman_222291'); // Status peminjaman (dipinjam, dikembalikan, dll.)
@@ -71,10 +71,10 @@ return new class extends Migration
                   ->on('barang_222291')
                   ->onDelete('cascade');
 
-            $table->foreign('pengguna_id_222291')
-                  ->references('id_pengguna_222291')
-                  ->on('pengguna_222291')
-                  ->onDelete('cascade');
+            // $table->foreign('pengguna_id_222291')
+            //       ->references('id_pengguna_222291')
+            //       ->on('pengguna_222291')
+            //       ->onDelete('cascade');
 
             $table->timestamps();
         });

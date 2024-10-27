@@ -6,8 +6,13 @@
                     <div>
                         <h5 class="mb-0">{{ $title }}</h5>
                     </div>
-                    <a href="{{ $createRoute }}" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; Tambah
-                        {{ $title }}</a>
+
+                    @if (session('role') === 'admin')
+                        <!-- Tombol Tambah Barang hanya untuk admin -->
+                        <a href="{{ $createRoute }}" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp;
+                            Tambah {{ $title }}</a>
+                    @endif
+
                 </div>
             </div>
             <div class="card-body px-0 pt-0 pb-2">
@@ -17,11 +22,15 @@
                             <tr>
                                 @foreach ($columns as $column)
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        {{ $column['label'] }}</th>
+                                        {{ $column['label'] }}
+                                    </th>
                                 @endforeach
+
                                 <th
                                     class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                    Action</th>
+                                    Action
+                                </th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -38,22 +47,33 @@
                                             @endif
                                         </td>
                                     @endforeach
-                                    <td class="text-center">
-                                        <a href="{{ route($editRoute, $item->id_barang_222291) }}" class="mx-3"
-                                            data-bs-toggle="tooltip" data-bs-original-title="Edit {{ $title }}">
-                                            <i class="fas fa-user-edit text-secondary"></i>
-                                        </a>
-                                        <span>
-                                            <i class="cursor-pointer fas fa-trash text-secondary"
-                                                onclick="confirm('Are you sure?') && document.getElementById('delete-form-{{ $item->id_barang_222291 }}').submit()"></i>
-                                            <form id="delete-form-{{ $item->id_barang_222291 }}"
-                                                action="{{ route($deleteRoute, $item->id_barang_222291) }}"
-                                                method="POST" style="display: none;">
-                                                @csrf
-                                                @method('DELETE')
-                                            </form>
-                                        </span>
-                                    </td>
+
+                                    @if (session('role') === 'admin')
+                                        <td class="text-center">
+                                            <a href="{{ route($editRoute, $item->id_barang_222291) }}" class="mx-3"
+                                                data-bs-toggle="tooltip"
+                                                data-bs-original-title="Edit {{ $title }}">
+                                                <i class="fas fa-user-edit text-secondary"></i>
+                                            </a>
+                                            <span>
+                                                <i class="cursor-pointer fas fa-trash text-secondary"
+                                                    onclick="confirm('Are you sure?') && document.getElementById('delete-form-{{ $item->id_barang_222291 }}').submit()"></i>
+                                                <form id="delete-form-{{ $item->id_barang_222291 }}"
+                                                    action="{{ route($deleteRoute, $item->id_barang_222291) }}"
+                                                    method="POST" style="display: none;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                </form>
+                                            </span>
+                                        </td>
+                                    @endif
+                                    @if (session('role') === 'user')
+                                        <td>
+                                            <a href="{{ $loanRoute }}"class="btn bg-gradient-primary btn-sm mb-0"
+                                                type="button">&nbsp;
+                                                Sewa</a>
+                                        </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>

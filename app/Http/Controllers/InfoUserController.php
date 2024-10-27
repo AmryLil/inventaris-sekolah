@@ -6,8 +6,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\View;
-
 class InfoUserController extends Controller
 {
 
@@ -20,13 +18,13 @@ class InfoUserController extends Controller
     {
 
         $attributes = request()->validate([
-            'name' => ['required', 'max:50'],
-            'email' => ['required', 'email', 'max:50', Rule::unique('users')->ignore(Auth::user()->id)],
-            'phone'     => ['max:50'],
-            'location' => ['max:70'],
-            'about_me'    => ['max:150'],
+            'name_222291' => ['required', 'max:50'],
+            'email_222291' => ['required', 'email', 'max:50', Rule::unique('users_222291')->ignore(Auth::user()->id)],
+            'phone_222291'     => ['max:50'],
+            'location_222291' => ['max:70'],
+            'about_me_222291'    => ['max:150'],
         ]);
-        if($request->get('email') != Auth::user()->email)
+        if($request->get('email_222291') != Auth::user()->email)
         {
             if(env('IS_DEMO') && Auth::user()->id == 1)
             {
@@ -37,17 +35,17 @@ class InfoUserController extends Controller
         }
         else{
             $attribute = request()->validate([
-                'email' => ['required', 'email', 'max:50', Rule::unique('users')->ignore(Auth::user()->id)],
+                'email_222291' => ['required', 'email', 'max:50', Rule::unique('users')->ignore(Auth::user()->id)],
             ]);
         }
         
         
         User::where('id',Auth::user()->id)
         ->update([
-            'name'    => $attributes['name'],
-            'phone'     => $attributes['phone'],
-            'location' => $attributes['location'],
-            'about_me'    => $attributes["about_me"],
+            'name_222291'    => $attributes['name_222291'],
+            'phone_222291'     => $attributes['phone_222291'],
+            'location_222291' => $attributes['location_222291'],
+            'about_me_222291'    => $attributes["about_me_222291"],
         ]);
         return redirect('/user-profile')->with('success','Profile updated successfully');
     }

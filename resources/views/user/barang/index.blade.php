@@ -11,14 +11,13 @@
             </span>
         </div>
 
-        <x-table title="Barang" :createRoute="route('barang.create')" :editRoute="'barang.edit'" :loanRoute="route('barang.sewa')" :deleteRoute="'barang.destroy'" :columns="[
+        <x-table title="Barang" :columns="[
             ['label' => 'ID', 'field' => 'id_barang_222291', 'type' => 'text'],
             ['label' => 'Nama Barang', 'field' => 'nama_barang_222291', 'type' => 'text'],
             ['label' => 'Kategori', 'field' => 'kategori.nama_kategori_222291', 'type' => 'text'], // Ambil nama kategori
             ['label' => 'Jumlah', 'field' => 'jumlah_222291', 'type' => 'text'],
             ['label' => 'Kondisi', 'field' => 'kondisi_222291', 'type' => 'text'],
             ['label' => 'Tanggal Masuk', 'field' => 'tanggal_masuk_222291', 'type' => 'text'],
-        ]"
-            :data="$barang" />
+        ]" :data="$barang" />
     </div>
 @endsection

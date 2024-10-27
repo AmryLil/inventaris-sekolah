@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             KategoriSeeder_222291::class,
             BarangSeeder_222291::class,
-            PenggunaSeeder_222291::class,
+            // PenggunaSeeder_222291::class,
             PeminjamanSeeder_222291::class,
             RiwayatBarangSeeder_222291::class,
             LokasiSeeder_222291::class,
