@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
 
 class BarangSeeder_222291 extends Seeder
 {
@@ -12,22 +12,49 @@ class BarangSeeder_222291 extends Seeder
     {
         DB::table('barang_222291')->insert([
             [
-                'nama_barang_222291' => 'Laptop',
-                'kategori_id_222291' => 1,
-                'jumlah_222291' => 10,
-                'lokasi_222291' => 'Lab Komputer',
-                'kondisi_222291' => 'Baik',
+                'nama_barang_222291'   => 'Laptop',
+                'kategori_id_222291'   => 1,  // Elektronik
+                'jumlah_222291'        => 10,
+                'lokasi_222291'        => 'Lab Komputer',
+                'kondisi_222291'       => 'Baik',
                 'tanggal_masuk_222291' => Carbon::now(),
-                'keterangan_222291' => 'Digunakan untuk pembelajaran'
+                'keterangan_222291'    => 'Digunakan untuk pembelajaran'
             ],
             [
-                'nama_barang_222291' => 'Meja Belajar',
-                'kategori_id_222291' => 3,
-                'jumlah_222291' => 20,
-                'lokasi_222291' => 'Ruang Kelas',
-                'kondisi_222291' => 'Baik',
+                'nama_barang_222291'   => 'Meja Belajar',
+                'kategori_id_222291'   => 3,  // Furnitur
+                'jumlah_222291'        => 20,
+                'lokasi_222291'        => 'Ruang Kelas',
+                'kondisi_222291'       => 'Baik',
                 'tanggal_masuk_222291' => Carbon::now(),
-                'keterangan_222291' => 'Untuk kegiatan belajar mengajar'
+                'keterangan_222291'    => 'Untuk kegiatan belajar mengajar'
+            ],
+            [
+                'nama_barang_222291'   => 'Proyektor',
+                'kategori_id_222291'   => 1,  // Elektronik
+                'jumlah_222291'        => 5,
+                'lokasi_222291'        => 'Aula',
+                'kondisi_222291'       => 'Baik',
+                'tanggal_masuk_222291' => Carbon::now(),
+                'keterangan_222291'    => 'Digunakan untuk presentasi'
+            ],
+            [
+                'nama_barang_222291'   => 'Kursi',
+                'kategori_id_222291'   => 3,  // Furnitur
+                'jumlah_222291'        => 50,
+                'lokasi_222291'        => 'Ruang Kelas',
+                'kondisi_222291'       => 'Baik',
+                'tanggal_masuk_222291' => Carbon::now(),
+                'keterangan_222291'    => 'Untuk kegiatan belajar mengajar'
+            ],
+            [
+                'nama_barang_222291'   => 'Whiteboard',
+                'kategori_id_222291'   => 2,  // Alat Tulis
+                'jumlah_222291'        => 5,
+                'lokasi_222291'        => 'Ruang Kelas',
+                'kondisi_222291'       => 'Baik',
+                'tanggal_masuk_222291' => Carbon::now(),
+                'keterangan_222291'    => 'Digunakan untuk menulis materi'
             ],
         ]);
     }

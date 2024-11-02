@@ -9,8 +9,6 @@
 
                     @if (session('role') === 'admin')
                         <!-- Tombol Tambah Barang hanya untuk admin -->
-                        <a href="{{ $createRoute }}" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp;
-                            Tambah {{ $title }}</a>
                     @endif
                 </div>
             </div>
@@ -55,16 +53,16 @@
 
                                     <td class="text-center">
                                         @if (session('role') === 'admin')
-                                            <a href="{{ route($editRoute, $item->id_barang_222291) }}" class="mx-3"
-                                                data-bs-toggle="tooltip"
+                                            <a href="{{ route($editRoute, $item->id_peminjaman_222291) }}"
+                                                class="mx-3" data-bs-toggle="tooltip"
                                                 data-bs-original-title="Edit {{ $title }}">
                                                 <i class="fas fa-user-edit text-secondary"></i>
                                             </a>
                                             <span>
                                                 <i class="cursor-pointer fas fa-trash text-secondary"
-                                                    onclick="confirm('Are you sure?') && document.getElementById('delete-form-{{ $item->id_barang_222291 }}').submit()"></i>
-                                                <form id="delete-form-{{ $item->id_barang_222291 }}"
-                                                    action="{{ route($deleteRoute, $item->id_barang_222291) }}"
+                                                    onclick="confirm('Are you sure?') && document.getElementById('delete-form-{{ $item->id_peminjaman_222291 }}').submit()"></i>
+                                                <form id="delete-form-{{ $item->id_peminjaman_222291 }}"
+                                                    action="{{ route($deleteRoute, $item->id_peminjaman_222291) }}"
                                                     method="POST" style="display: none;">
                                                     @csrf
                                                     @method('DELETE')
