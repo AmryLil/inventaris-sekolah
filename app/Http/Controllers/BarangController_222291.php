@@ -86,4 +86,5 @@ class BarangController_222291 extends Controller
         return redirect()->route('barang.index') // Mengalihkan ke index barang
                          ->with('success', 'Barang berhasil dihapus');
     }
+   
 }
