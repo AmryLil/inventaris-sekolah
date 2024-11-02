@@ -26,6 +26,11 @@
                 <label for="tanggal_pengembalian_222291" class="form-label">Tanggal Pengembalian</label>
                 <input type="date" name="tanggal_pengembalian_222291" class="form-control">
             </div>
+            <div class="mb-3">
+    <label for="quantity" class="form-label">Jumlah Peminjaman</label>
+    <input type="number" name="quantity" id="quantity" class="form-control" min="1" required>
+</div>
+            
             <input type="hidden" name="status_peminjaman_222291" value="Dipinjam">
 
             {{-- <div class="mb-3">
