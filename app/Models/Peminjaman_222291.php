@@ -9,12 +9,14 @@ class Peminjaman_222291 extends Model
 {
     use HasFactory;
 
-    protected $table = 'peminjaman_222291';
+    protected $table      = 'peminjaman_222291';
+    protected $primaryKey = 'id_peminjaman_222291';
 
     // Kolom yang diizinkan untuk diisi massal
     protected $fillable = [
         'barang_id_222291',
         'nama_peminjam_222291',
+        'jumlah_222291',
         'tanggal_peminjaman_222291',
         'tanggal_pengembalian_222291',
         'status_peminjaman_222291',

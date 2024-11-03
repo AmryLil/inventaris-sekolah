@@ -60,7 +60,9 @@ return new class extends Migration {
         Schema::create('peminjaman_222291', function (Blueprint $table) {
             $table->id('id_peminjaman_222291');
             $table->string('nama_peminjam_222291');  // Kolom ID unik untuk peminjaman
-            $table->unsignedBigInteger('barang_id_222291');  // Foreign Key untuk barang
+            $table->unsignedBigInteger('barang_id_222291');
+            $table->integer('jumlah_222291');  // Jumlah barang yang tersedia
+            // Foreign Key untuk barang
             // $table->unsignedBigInteger('pengguna_id_222291'); // Foreign Key untuk pengguna
             $table->date('tanggal_peminjaman_222291');  // Tanggal peminjaman barang
             $table->date('tanggal_pengembalian_222291')->nullable();  // Tanggal pengembalian barang

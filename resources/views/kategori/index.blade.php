@@ -8,14 +8,10 @@
             </span>
         </div>
 
-        <x-kategori title="Kategori" 
-              :createRoute="route('kategori.create')" 
-              :editRoute="'kategori.edit'" 
-              :deleteRoute="'kategori.destroy'" 
-              :columns="[
-                  ['label' => 'ID', 'field' => 'id_kategori_222291', 'type' => 'text'],
-                  ['label' => 'Nama Kategori', 'field' => 'nama_kategori_222291', 'type' => 'text'],
-              ]"
-              :data="$kategori" />
+        <x-kategori title="Kategori" :createRoute="route('kategori.create')" :editRoute="'kategori.edit'" :deleteRoute="'kategori.destroy'" :columns="[
+            ['label' => 'ID', 'field' => 'id_kategori_222291', 'type' => 'text'],
+            ['label' => 'Nama Kategori', 'field' => 'nama_kategori_222291', 'type' => 'text'],
+        ]"
+            :data="$kategori" />
     </div>
 @endsection

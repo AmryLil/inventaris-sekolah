@@ -17,6 +17,9 @@
                     <table class="table align-items-center mb-0">
                         <thead>
                             <tr>
+                                <th
+                                    class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    No</th>
                                 @foreach ($columns as $column)
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                         {{ $column['label'] }}
@@ -30,8 +33,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data as $item)
+                            @foreach ($data as $index => $item)
                                 <tr>
+                                    <td class="text-center text-sm">
+                                        {{ $index + 1 }} {{-- Increment ID berdasarkan index --}}
+                                    </td>
                                     @foreach ($columns as $column)
                                         <td class="text-center">
                                             @if ($column['type'] === 'image')

@@ -11,11 +11,11 @@
         </div>
 
         <x-tablepinjam title="Peminjaman" :editRoute="'peminjaman.edit'" :loanRoute="'peminjaman.sewa'" :deleteRoute="'peminjaman.destroy'" :editRoute :columns="[
-            ['label' => 'ID', 'field' => 'id_peminjaman_222291', 'type' => 'text'],
             ['label' => 'Nama Pengguna', 'field' => 'nama_peminjam_222291', 'type' => 'text'],
             ['label' => 'Nama Barang', 'field' => 'barang.nama_barang_222291', 'type' => 'text'], // Ambil nama barang
             ['label' => 'Tanggal Sewa', 'field' => 'tanggal_peminjaman_222291', 'type' => 'text'],
             ['label' => 'Tanggal Kembali', 'field' => 'tanggal_pengembalian_222291', 'type' => 'text'],
+            ['label' => 'Jumlah Barang', 'field' => 'jumlah_222291', 'type' => 'number'],
             ['label' => 'Status', 'field' => 'status_peminjaman_222291', 'type' => 'text'],
         ]"
             :data="$peminjaman" />

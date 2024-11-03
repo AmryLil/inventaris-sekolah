@@ -8,7 +8,8 @@
                 <div class="row gx-4">
                     <div class="col-auto">
                         <div class="avatar avatar-xl position-relative">
-                            <img src="../assets/img/bruce-mars.jpg" alt="..." class="w-100 border-radius-lg shadow-sm">
+                            <img src="https://i.pinimg.com/736x/44/84/b6/4484b675ec3d56549907807fccf75b81.jpg" alt="..."
+                                class="w-100 border-radius-lg ">
                             <a href="javascript:;"
                                 class="btn btn-sm btn-icon-only bg-gradient-light position-absolute bottom-0 end-0 mb-n2 me-n2">
                                 <i class="fa fa-pen top-0" data-bs-toggle="tooltip" data-bs-placement="top"

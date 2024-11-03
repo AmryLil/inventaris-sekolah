@@ -11,7 +11,6 @@
         </div>
 
         <x-table title="Barang" :createRoute="route('barang.create')" :editRoute="'barang.edit'" :loanRoute="'barang.sewa'" :deleteRoute="'barang.destroy'" :columns="[
-            ['label' => 'ID', 'field' => 'id_barang_222291', 'type' => 'text'],
             ['label' => 'Nama Barang', 'field' => 'nama_barang_222291', 'type' => 'text'],
             ['label' => 'Kategori', 'field' => 'kategori.nama_kategori_222291', 'type' => 'text'], // Ambil nama kategori
             ['label' => 'Jumlah', 'field' => 'jumlah_222291', 'type' => 'text'],
@@ -19,5 +18,8 @@
             ['label' => 'Tanggal Masuk', 'field' => 'tanggal_masuk_222291', 'type' => 'text'],
         ]"
             :data="$barang" />
+        <div class=" font-semibold " style="padding-left: 30px">
+            <h6>Total Barang : {{ $totalJumlah }}</h6>
+        </div>
     </div>
 @endsection
