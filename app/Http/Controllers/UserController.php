@@ -58,7 +58,7 @@ class UserController extends Controller
             'about_me_222291' => $request->input('about_me'),
         ]);
 
-        return redirect()->route('users')->with('success', 'User created successfully.');
+        return redirect()->route('users.index')->with('success', 'User created successfully.');
     }
 
     /**
@@ -115,7 +115,7 @@ class UserController extends Controller
             'password_222291' => $validated['password'] ? Hash::make($validated['password']) : $user->password_222291,
         ]);
 
-        return redirect()->route('users')->with('success', 'User updated successfully.');
+        return redirect()->route('users.index')->with('success', 'User updated successfully.');
     }
 
     /**
@@ -127,6 +127,6 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('users')->with('success', 'User deleted successfully.');
+        return redirect()->route('users.index')->with('success', 'User deleted successfully.');
     }
 }

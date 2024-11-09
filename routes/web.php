@@ -110,4 +110,12 @@ Route::group(['middleware' => 'guest'], function () {
 
 Route::get('/user/peminjaman', [PeminjamanController::class, 'userPeminjaman'])->name('user.peminjaman')->middleware('auth');
 
-Route::resource('users', UserController::class);
+Route::prefix('users')->group(function () {
+    Route::get('/', [UserController::class,          'index'])->name('users.index');
+    Route::get('/create', [UserController::class,    'create'])->name('users.create');
+    Route::post('/', [UserController::class,         'store'])->name('users.store');
+    Route::get('/{id}', [UserController::class,      'show'])->name('users.show');
+    Route::get('/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::put('/{id}', [UserController::class,      'update'])->name('users.update');
+    Route::delete('/{id}', [UserController::class,   'destroy'])->name('users.destroy');
+});
