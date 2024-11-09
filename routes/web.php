@@ -9,6 +9,7 @@ use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ResetController;
 use App\Http\Controllers\SessionsController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -108,3 +109,5 @@ Route::group(['middleware' => 'guest'], function () {
 });
 
 Route::get('/user/peminjaman', [PeminjamanController::class, 'userPeminjaman'])->name('user.peminjaman')->middleware('auth');
+
+Route::resource('users', UserController::class);
