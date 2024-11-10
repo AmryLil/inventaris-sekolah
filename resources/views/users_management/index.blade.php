@@ -1,50 +1,22 @@
-<!-- resources/views/users/index.blade.php -->
 @extends('layouts.user_type.auth')
 
 @section('content')
-    <div class="container mt-5">
-        <h1 class="mb-4">Daftar Users</h1>
+    <div>
+        <div class="alert alert-secondary mx-4" role="alert">
+            <span class="text-white">
+                <strong>Kelola Semua Data Guru Di Sini</strong>
+                <a href="https://www.creative-tim.com/live/soft-ui-dashboard-pro-laravel" target="_blank"
+                    class="text-white"></a>
+            </span>
+        </div>
 
-        @if (session('success'))
-            <div class="alert alert-success">{{ session('success') }}</div>
-        @endif
-
-        <a href="{{ route('users.create') }}" class="btn btn-primary mb-3">Tambah User</a>
-
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Nama</th>
-                    <th>Email</th>
-                    <th>Role</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse($users as $user)
-                    <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td>{{ $user->role }}</td>
-                        <td>
-                            <a href="{{ route('users.show', $user->id) }}" class="btn btn-info btn-sm">Lihat</a>
-                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                            <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="d-inline"
-                                onsubmit="return confirm('Yakin ingin menghapus user ini?')">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
-                            </form>
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="5" class="text-center">Tidak ada data user</td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
+        <x-tableusers :createRoute="route('users.create')" title="Guru" :editRoute="'users.edit'" :loanRoute="'users.create'" :deleteRoute="'users.destroy'" :editRoute
+            :columns="[
+                ['label' => 'Nama Pengguna', 'field' => 'name_222291', 'type' => 'text'],
+                ['label' => 'Email', 'field' => 'email_222291', 'type' => 'text'], // Ambil nama barang
+                ['label' => 'Password', 'field' => 'password_222291', 'type' => 'text'],
+                ['label' => 'Telepon', 'field' => 'phone_222291', 'type' => 'text'],
+                ['label' => 'Alamat', 'field' => 'location_222291', 'type' => 'text'],
+            ]" :data="$users" />
     </div>
 @endsection

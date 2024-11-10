@@ -55,7 +55,14 @@
                                                     </p>
                                                 @else
                                                     <p class="text-xs font-weight-bold mb-0">
-                                                        {{ $item->{$column['field']} }}</p>
+                                                        {{-- Cek jika field adalah password --}}
+                                                        @if ($column['field'] === 'password_222291')
+                                                            <span
+                                                                class="password-field">{{ Str::limit($item->{$column['field']}, 8, '...') }}</span>
+                                                        @else
+                                                            {{ $item->{$column['field']} }}
+                                                        @endif
+                                                    </p>
                                                 @endif
                                             @endif
                                         </td>
@@ -63,33 +70,33 @@
 
                                     <td class="text-center">
                                         @if (session('role') === 'admin')
-                                            <a href="{{ route($editRoute, $item->id_barang_222291) }}" class="mx-3"
+                                            <a href="{{ route($editRoute, $item->id) }}" class="mx-3"
                                                 data-bs-toggle="tooltip"
                                                 data-bs-original-title="Edit {{ $title }}">
                                                 <i class="fas fa-user-edit text-secondary"></i>
                                             </a>
                                             <span>
                                                 <i class="cursor-pointer fas fa-trash text-secondary"
-                                                    onclick="confirm('Are you sure?') && document.getElementById('delete-form-{{ $item->id_barang_222291 }}').submit()"></i>
-                                                <form id="delete-form-{{ $item->id_barang_222291 }}"
-                                                    action="{{ route($deleteRoute, $item->id_barang_222291) }}"
-                                                    method="POST" style="display: none;">
+                                                    onclick="confirm('Are you sure?') && document.getElementById('delete-form-{{ $item->id }}').submit()"></i>
+                                                <form id="delete-form-{{ $item->id }}"
+                                                    action="{{ route($deleteRoute, $item->id) }}" method="POST"
+                                                    style="display: none;">
                                                     @csrf
                                                     @method('DELETE')
                                                 </form>
                                             </span>
                                         @elseif (session('role') === 'user')
                                             @if (!request()->is('user/peminjaman'))
-                                                <a href="{{ route($loanRoute, ['id' => $item->id_barang_222291]) }}"
-                                                    class="btn bg-gradient-primary btn-sm mb-0" type="button">&nbsp;
-                                                    Pinjam</a>
+                                                <a href="{{ route($loanRoute, ['id' => $item->id]) }}"
+                                                    class="btn bg-gradient-primary btn-sm mb-0"
+                                                    type="button">&nbsp;Sewa</a>
                                             @endif
                                         @endif
-
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
+
                     </table>
                 </div>
             </div>

@@ -15,17 +15,36 @@
             </div>
         @endif
 
-        <form action="{{ route('users.update', $user->id) }}" method="POST">
+        <form action="{{ route('users.update', ['id' => $user->id]) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="mb-3">
                 <label for="name" class="form-label">Nama</label>
-                <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}" required>
+                <input type="text" class="form-control" id="name" name="name" value="{{ $user->name_222291 }}"
+                    required>
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}"
+                <input type="email" class="form-control" id="email" name="email" value="{{ $user->email_222291 }}"
                     required>
+            </div>
+            <div class="mb-3">
+                <label for="password_confirmation" class="form-label">Alamat</label>
+                <input type="text" class="form-control" id="alamat" name="alamat"
+                    value="{{ $user->location_222291 }}">
+            </div>
+
+            <div class="mb-3">
+                <label for="password_confirmation" class="form-label">Telepon</label>
+                <input type="text" class="form-control" id="telepon" name="telepon" value="{{ $user->phone_222291 }}">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password">
+            </div>
+            <div class="mb-3">
+                <label for="password_confirmation" class="form-label">Konfirmasi Password</label>
+                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
             </div>
             <div class="mb-3">
                 <label for="role" class="form-label">Role</label>

@@ -16,8 +16,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        // Ambil semua data user
-        $users = User::all();
+        // Ambil semua data user dengan role 'user'
+        $users = User::where('role_222291', 'user')->get();
+
+        // Tampilkan ke view
         return view('users_management.index', compact('users'));
     }
 
@@ -45,6 +47,8 @@ class UserController extends Controller
             'email'    => 'required|email|unique:users_222291,email_222291',
             'password' => 'required|string|min:6|confirmed',
             'role'     => ['required', Rule::in(['admin', 'user'])],
+            'telepon'  => 'nullable|string|max:20',  // Sesuaikan jika ada input telepon
+            'alamat'   => 'nullable|string|max:255',
         ]);
 
         // Simpan data user baru
@@ -53,8 +57,8 @@ class UserController extends Controller
             'email_222291'    => $validated['email'],
             'password_222291' => Hash::make($validated['password']),
             'role_222291'     => $validated['role'],
-            'phone_222291'    => $request->input('phone'),
-            'location_222291' => $request->input('location'),
+            'phone_222291'    => $validated['telepon'],
+            'location_222291' => $validated['alamat'],
             'about_me_222291' => $request->input('about_me'),
         ]);
 
@@ -78,8 +82,9 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {
+        $user = User::findOrFail($id);
         return view('users_management.edit', compact('user'));
     }
 
@@ -90,30 +95,42 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
+        // Cari user berdasarkan ID
+        $user = User::findOrFail($id);
+
         // Validasi data
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => [
                 'required',
                 'email',
-                Rule::unique('users_222291', 'email_222291')->ignore($user->id),
+                Rule::unique('users_222291', 'email_222291')->ignore($id),
             ],
             'password' => 'nullable|string|min:6|confirmed',
             'role' => ['required', Rule::in(['admin', 'user'])],
+            'telepon' => 'nullable|string|max:20',  // Sesuaikan jika ada input telepon
+            'alamat' => 'nullable|string|max:255',
         ]);
 
-        // Update data user
-        $user->update([
+        // Siapkan data yang akan diupdate
+        $dataToUpdate = [
             'name_222291'     => $validated['name'],
             'email_222291'    => $validated['email'],
             'role_222291'     => $validated['role'],
-            'phone_222291'    => $request->input('phone'),
-            'location_222291' => $request->input('location'),
+            'phone_222291'    => $validated['telepon'],
+            'location_222291' => $validated['alamat'],
             'about_me_222291' => $request->input('about_me'),
-            'password_222291' => $validated['password'] ? Hash::make($validated['password']) : $user->password_222291,
-        ]);
+        ];
+
+        // Hanya update password jika ada input password baru
+        if (!empty($validated['password'])) {
+            $dataToUpdate['password_222291'] = Hash::make($validated['password']);
+        }
+
+        // Update data user
+        $user->update($dataToUpdate);
 
         return redirect()->route('users.index')->with('success', 'User updated successfully.');
     }
@@ -124,9 +141,11 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        $user->delete();
-        return redirect()->route('users.index')->with('success', 'User deleted successfully.');
+        $kategori = User::findOrFail($id);
+        $kategori->delete();
+
+        return redirect()->route('users.index')->with('success', 'Pengguna berhasil dihapus.');
     }
 }

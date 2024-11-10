@@ -3,7 +3,7 @@
 @section('content')
     <main class="main-content mt-0">
         <section>
-            <div class="page-header min-vh-80">
+            <div class="page-header min-vh-100">
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
@@ -38,12 +38,7 @@
                                         </div>
                                     </form>
                                 </div>
-                                <div class="card-footer text-center pt-0 px-lg-2 px-1">
-                                    <p class="mb-4 text-sm mx-auto">
-                                        Belum punya akun?
-                                        <a href="register" class="text-info text-gradient font-weight-bold">Sign up</a>
-                                    </p>
-                                </div>
+
                             </div>
                         </div>
                         <div class="col-md-6">
