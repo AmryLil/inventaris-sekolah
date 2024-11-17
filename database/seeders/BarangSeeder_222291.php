@@ -18,7 +18,8 @@ class BarangSeeder_222291 extends Seeder
                 'lokasi_222291'        => 'Lab Komputer',
                 'kondisi_222291'       => 'Baik',
                 'tanggal_masuk_222291' => Carbon::now(),
-                'keterangan_222291'    => 'Digunakan untuk pembelajaran'
+                'keterangan_222291'    => 'Digunakan untuk pembelajaran',
+                'path_img_222291'      => 'images/barang/laptop.jpg',  // Path sesuai upload
             ],
             [
                 'nama_barang_222291'   => 'Meja Belajar',
@@ -27,7 +28,8 @@ class BarangSeeder_222291 extends Seeder
                 'lokasi_222291'        => 'Ruang Kelas',
                 'kondisi_222291'       => 'Baik',
                 'tanggal_masuk_222291' => Carbon::now(),
-                'keterangan_222291'    => 'Untuk kegiatan belajar mengajar'
+                'keterangan_222291'    => 'Untuk kegiatan belajar mengajar',
+                'path_img_222291'      => 'images/barang/meja_belajar.jpg',  // Path sesuai upload
             ],
             [
                 'nama_barang_222291'   => 'Proyektor',
@@ -36,7 +38,8 @@ class BarangSeeder_222291 extends Seeder
                 'lokasi_222291'        => 'Aula',
                 'kondisi_222291'       => 'Baik',
                 'tanggal_masuk_222291' => Carbon::now(),
-                'keterangan_222291'    => 'Digunakan untuk presentasi'
+                'keterangan_222291'    => 'Digunakan untuk presentasi',
+                'path_img_222291'      => 'images/barang/proyektor.jpg',  // Path sesuai upload
             ],
             [
                 'nama_barang_222291'   => 'Kursi',
@@ -45,7 +48,8 @@ class BarangSeeder_222291 extends Seeder
                 'lokasi_222291'        => 'Ruang Kelas',
                 'kondisi_222291'       => 'Baik',
                 'tanggal_masuk_222291' => Carbon::now(),
-                'keterangan_222291'    => 'Untuk kegiatan belajar mengajar'
+                'keterangan_222291'    => 'Untuk kegiatan belajar mengajar',
+                'path_img_222291'      => 'images/barang/kursi.jpg',  // Path sesuai upload
             ],
             [
                 'nama_barang_222291'   => 'Whiteboard',
@@ -54,7 +58,8 @@ class BarangSeeder_222291 extends Seeder
                 'lokasi_222291'        => 'Ruang Kelas',
                 'kondisi_222291'       => 'Baik',
                 'tanggal_masuk_222291' => Carbon::now(),
-                'keterangan_222291'    => 'Digunakan untuk menulis materi'
+                'keterangan_222291'    => 'Digunakan untuk menulis materi',
+                'path_img_222291'      => 'images/barang/whiteboard.jpg',  // Path sesuai upload
             ],
         ]);
     }

@@ -44,7 +44,9 @@ return new class extends Migration {
             $table->string('lokasi_222291');  // Lokasi penyimpanan barang
             $table->string('kondisi_222291');  // Kondisi barang (baik, rusak, dll.)
             $table->date('tanggal_masuk_222291');  // Tanggal barang masuk ke inventaris
-            $table->text('keterangan_222291')->nullable();  // Keterangan tambahan
+            $table->string('merek_222291')->nullable();
+            $table->text('keterangan_222291')->nullable();
+            $table->string('path_img_222291')->nullable();
 
             // Menambahkan foreign key constraint
             $table

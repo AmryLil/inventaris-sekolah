@@ -33,12 +33,26 @@ class BarangController_222291 extends Controller
             'lokasi_222291'        => 'required|string|max:255',
             'kondisi_222291'       => 'required|string|max:255',
             'tanggal_masuk_222291' => 'required|date',
+            'foto'                 => 'required|image|mimes:jpeg,png,jpg|max:2048',  // Validasi file
         ]);
 
-        Barang_222291::create($request->all());  // Menyimpan barang baru
+        // Simpan foto
+        $filename = time() . '_' . $request->file('foto')->getClientOriginalName();
+        $path     = $request->file('foto')->move(public_path('images/barang'), $filename);  // Folder 'public/images/barang'
+
+        // Simpan data barang
+        Barang_222291::create([
+            'nama_barang_222291'   => $request->nama_barang_222291,
+            'kategori_id_222291'   => $request->kategori_id_222291,
+            'jumlah_222291'        => $request->jumlah_222291,
+            'lokasi_222291'        => $request->lokasi_222291,
+            'kondisi_222291'       => $request->kondisi_222291,
+            'tanggal_masuk_222291' => $request->tanggal_masuk_222291,
+            'path_img_222291'      => 'images/barang/' . $filename,  // Path gambar
+        ]);
 
         return redirect()
-            ->route('barang.index')  // Mengalihkan ke index barang
+            ->route('barang.index')
             ->with('success', 'Barang berhasil ditambahkan');
     }
 
@@ -46,7 +60,7 @@ class BarangController_222291 extends Controller
     public function show($id)
     {
         $barang = Barang_222291::with('kategori')->findOrFail($id);  // Mengambil barang beserta kategori
-        return view('barang.show', compact('barang'));  // Mengembalikan view dengan data barang
+        return view('barang.detail', compact('barang'));  // Mengembalikan view dengan data barang
     }
 
     // 5. Menampilkan form edit barang

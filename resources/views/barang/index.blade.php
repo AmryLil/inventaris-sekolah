@@ -11,6 +11,7 @@
         </div>
 
         <x-table title="Barang" :createRoute="route('barang.create')" :editRoute="'barang.edit'" :loanRoute="'barang.sewa'" :deleteRoute="'barang.destroy'" :columns="[
+            ['label' => 'Photo', 'field' => 'path_img_222291', 'type' => 'image'],
             ['label' => 'Nama Barang', 'field' => 'nama_barang_222291', 'type' => 'text'],
             ['label' => 'Kategori', 'field' => 'kategori.nama_kategori_222291', 'type' => 'text'], // Ambil nama kategori
             ['label' => 'Jumlah', 'field' => 'jumlah_222291', 'type' => 'text'],

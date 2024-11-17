@@ -38,15 +38,17 @@
                         </thead>
                         <tbody>
                             @foreach ($data as $index => $item)
-                                <tr>
+                                <tr class="clickable-row">
                                     <td class="text-center text-sm">
                                         {{ $index + 1 }} {{-- Increment ID berdasarkan index --}}
                                     </td>
                                     @foreach ($columns as $column)
                                         <td class="text-center">
                                             @if ($column['type'] === 'image')
-                                                <img src="{{ $item->{$column['field']} }}"
-                                                    class="avatar avatar-sm me-3">
+                                                <a href="{{ route('barang.show', $item->id_barang_222291) }}">
+                                                    <img src="{{ asset($item->{$column['field']}) }}"
+                                                        class="avatar avatar-lg me-3">
+                                                </a>
                                             @else
                                                 @if (strpos($column['field'], '.') !== false)
                                                     {{-- Handle nested fields for category --}}
@@ -96,3 +98,20 @@
         </div>
     </div>
 </div>
+
+{{-- JavaScript untuk membuat baris klik-able --}}
+@section('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const rows = document.querySelectorAll('.clickable-row');
+            rows.forEach(row => {
+                row.addEventListener('click', function() {
+                    const href = this.getAttribute('data-href');
+                    if (href) {
+                        window.location.href = href;
+                    }
+                });
+            });
+        });
+    </script>
+@endsection
