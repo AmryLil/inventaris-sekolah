@@ -55,19 +55,19 @@ Route::group(['middleware' => 'auth'], function () {
         return view('virtual-reality');
     })->name('virtual-reality');
 
-    Route::get('/logout', [SessionsController::class,           'destroy']);
-    Route::get('/user-profile', [InfoUserController::class,     'create']);
-    Route::post('/user-profile', [InfoUserController::class,    'store']);
-    Route::get('/barang/{id}', [BarangController_222291::class, 'show'])->name('barang.show');
+    Route::get('/logout', [SessionsController::class,                  'destroy']);
+    Route::get('/user-profile', [InfoUserController::class,            'create']);
+    Route::post('/user-profile', [InfoUserController::class,           'store']);
+    Route::get('/barang/{id}/detail', [BarangController_222291::class, 'show'])->name('barang.show');
 });
 
 // Rute untuk barang
 Route::get('/barang', [BarangController_222291::class, 'index'])->name('barang.index');
 
 Route::group(['middleware' => 'role:admin'], function () {
-    Route::get('/barang/add', [BarangController_222291::class, 'create'])->name('barang.create');
-    Route::post('/barang', [BarangController_222291::class,    'store'])->name('barang.store');
-
+    Route::get('/barang/add', [BarangController_222291::class,       'create'])->name('barang.create');
+    Route::post('/barang', [BarangController_222291::class,          'store'])->name('barang.store');
+    Route::get('/barang/{id}', [BarangController_222291::class,      'show'])->name('barang.lihat');
     Route::get('/barang/edit/{id}', [BarangController_222291::class, 'edit'])->name('barang.edit');
     Route::put('/barang/{id}', [BarangController_222291::class,      'update'])->name('barang.update');
     Route::delete('/barang/{id}', [BarangController_222291::class,   'destroy'])->name('barang.destroy');
