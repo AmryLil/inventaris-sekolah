@@ -19,5 +19,12 @@
             ['label' => 'Status', 'field' => 'status_peminjaman_222291', 'type' => 'text'],
         ]"
             :data="$peminjaman" />
+
+        <div class="mb-3 mx-4">
+            <a href="{{ route('peminjaman.generatePDF') }}" class="btn btn-primary">Export PDF</a>
+        </div>
+
+
+
     </div>
 @endsection

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
@@ -147,5 +148,12 @@ class UserController extends Controller
         $kategori->delete();
 
         return redirect()->route('users.index')->with('success', 'Pengguna berhasil dihapus.');
+    }
+
+    public function exportPDF()
+    {
+        $users = User::where('role_222291', 'user')->get();  // Ambil semua data pengguna
+        $pdf   = PDF::loadView('users_management.pdf', compact('users'));  // Load view PDF
+        return $pdf->download('data_guru.pdf');  // Download file PDF
     }
 }

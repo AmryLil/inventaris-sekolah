@@ -7,7 +7,8 @@
             @method('PUT')
             <div class="form-group">
                 <label for="nama_kategori_222291">Nama Kategori</label>
-                <input type="text" class="form-control" id="nama_kategori_222291" name="nama_kategori_222291" value="{{ $kategori->nama_kategori_222291 }}" required>
+                <input type="text" class="form-control" id="nama_kategori_222291" name="nama_kategori_222291"
+                    value="{{ $kategori->nama_kategori_222291 }}" required>
             </div>
             <button type="submit" class="btn btn-primary">Perbarui Kategori</button>
         </form>

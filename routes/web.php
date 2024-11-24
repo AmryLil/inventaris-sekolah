@@ -65,20 +65,22 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('/barang', [BarangController_222291::class, 'index'])->name('barang.index');
 
 Route::group(['middleware' => 'role:admin'], function () {
-    Route::get('/barang/add', [BarangController_222291::class,       'create'])->name('barang.create');
-    Route::post('/barang', [BarangController_222291::class,          'store'])->name('barang.store');
-    Route::get('/barang/{id}', [BarangController_222291::class,      'show'])->name('barang.lihat');
-    Route::get('/barang/edit/{id}', [BarangController_222291::class, 'edit'])->name('barang.edit');
-    Route::put('/barang/{id}', [BarangController_222291::class,      'update'])->name('barang.update');
-    Route::delete('/barang/{id}', [BarangController_222291::class,   'destroy'])->name('barang.destroy');
-
-    Route::get('/kategori', [KategoriController::class,           'index'])->name('kategori.index');
-    Route::get('/kategori/create', [KategoriController::class,    'create'])->name('kategori.create');
-    Route::post('/kategori', [KategoriController::class,          'store'])->name('kategori.store');
-    Route::get('/kategori/{id}', [KategoriController::class,      'show'])->name('kategori.show');
-    Route::get('/kategori/edit/{id}', [KategoriController::class, 'edit'])->name('kategori.edit');
-    Route::put('/kategori/{id}', [KategoriController::class,      'update'])->name('kategori.update');
-    Route::delete('/kategori/{id}', [KategoriController::class,   'destroy'])->name('kategori.destroy');
+    Route::get('/peminjaman/export-pdf', [PeminjamanController::class, 'generatePDF'])->name('peminjaman.generatePDF');
+    Route::get('/barang/add', [BarangController_222291::class,         'create'])->name('barang.create');
+    Route::post('/barang', [BarangController_222291::class,            'store'])->name('barang.store');
+    Route::get('/barang/{id}', [BarangController_222291::class,        'show'])->name('barang.lihat');
+    Route::get('/barang/edit/{id}', [BarangController_222291::class,   'edit'])->name('barang.edit');
+    Route::put('/barang/{id}', [BarangController_222291::class,        'update'])->name('barang.update');
+    Route::delete('/barang/{id}', [BarangController_222291::class,     'destroy'])->name('barang.destroy');
+    Route::get('/kategori', [KategoriController::class,                'index'])->name('kategori.index');
+    Route::get('/kategori/create', [KategoriController::class,         'create'])->name('kategori.create');
+    Route::post('/kategori', [KategoriController::class,               'store'])->name('kategori.store');
+    Route::get('/kategori/{id}', [KategoriController::class,           'show'])->name('kategori.show');
+    Route::get('/kategori/edit/{id}', [KategoriController::class,      'edit'])->name('kategori.edit');
+    Route::put('/kategori/{id}', [KategoriController::class,           'update'])->name('kategori.update');
+    Route::delete('/kategori/{id}', [KategoriController::class,        'destroy'])->name('kategori.destroy');
+    Route::get('/users/export-pdf', [UserController::class,            'exportPDF'])->name('users.exportPDF');
+    Route::get('/export-pdf', [BarangController_222291::class,         'exportPdf'])->name('barang.export-pdf');
 });
 
 // Rute untuk peminjaman barang
@@ -112,11 +114,12 @@ Route::group(['middleware' => 'guest'], function () {
 Route::get('/user/peminjaman', [PeminjamanController::class, 'userPeminjaman'])->name('user.peminjaman')->middleware('auth');
 
 Route::prefix('users')->group(function () {
-    Route::get('/', [UserController::class,          'index'])->name('users.index');
-    Route::get('/create', [UserController::class,    'create'])->name('users.create');
-    Route::post('/', [UserController::class,         'store'])->name('users.store');
-    Route::get('/{id}', [UserController::class,      'show'])->name('users.show');
-    Route::get('/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
-    Route::put('/{id}', [UserController::class,      'update'])->name('users.update');
-    Route::delete('/{id}', [UserController::class,   'destroy'])->name('users.destroy');
+    Route::get('/', [UserController::class,                 'index'])->name('users.index');
+    Route::get('/create', [UserController::class,           'create'])->name('users.create');
+    Route::post('/', [UserController::class,                'store'])->name('users.store');
+    Route::get('/{id}', [UserController::class,             'show'])->name('users.show');
+    Route::get('/{id}/edit', [UserController::class,        'edit'])->name('users.edit');
+    Route::put('/{id}', [UserController::class,             'update'])->name('users.update');
+    Route::delete('/{id}', [UserController::class,          'destroy'])->name('users.destroy');
+    Route::get('/users/export-pdf', [UserController::class, 'exportPDF'])->name('users.exportPDF');
 });

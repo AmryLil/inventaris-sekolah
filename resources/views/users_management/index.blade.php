@@ -18,5 +18,6 @@
                 ['label' => 'Telepon', 'field' => 'phone_222291', 'type' => 'text'],
                 ['label' => 'Alamat', 'field' => 'location_222291', 'type' => 'text'],
             ]" :data="$users" />
+        <a href="{{ route('users.exportPDF') }}" class="btn btn-primary mb-3 mx-4">Export ke PDF</a>
     </div>
 @endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Barang_222291;
 use App\Models\Peminjaman_222291;
+use Barryvdh\DomPDF\Facade\PDF;
 use Illuminate\Http\Request;
 
 class PeminjamanController extends Controller
@@ -135,5 +136,17 @@ class PeminjamanController extends Controller
             ->get();
 
         return view('peminjaman.userpeminjaman', compact('peminjaman'));
+    }
+
+    public function generatePDF()
+    {
+        // Ambil data peminjaman dengan relasi barang
+        $peminjaman = Peminjaman_222291::with('barang')->get();
+
+        // Render view ke PDF
+        $pdf = PDF::loadView('peminjaman.pdf', ['peminjaman' => $peminjaman]);
+
+        // Unduh file PDF
+        return $pdf->download('data_peminjaman.pdf');
     }
 }

@@ -22,5 +22,6 @@
         <div class=" font-semibold " style="padding-left: 30px">
             <h6>Total Barang : {{ $totalJumlah }}</h6>
         </div>
+        <a href="{{ route('barang.export-pdf') }}" class="btn btn-primary mb-3 mx-4">Export PDF</a>
     </div>
 @endsection

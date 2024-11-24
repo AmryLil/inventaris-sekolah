@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Barang_222291;
 use App\Models\Kategori_222291;
+use Barryvdh\DomPDF\Facade\PDF;
 use Illuminate\Http\Request;
 
 class BarangController_222291 extends Controller
@@ -103,5 +104,12 @@ class BarangController_222291 extends Controller
         return redirect()
             ->route('barang.index')  // Mengalihkan ke index barang
             ->with('success', 'Barang berhasil dihapus');
+    }
+
+    public function exportPdf()
+    {
+        $barangs = Barang_222291::with('kategori')->get();
+        $pdf     = Pdf::loadView('barang.pdf', compact('barangs'));
+        return $pdf->download('barang_222291.pdf');  // Unduh file PDF
     }
 }
