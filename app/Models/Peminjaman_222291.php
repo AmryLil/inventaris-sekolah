@@ -18,8 +18,10 @@ class Peminjaman_222291 extends Model
         'nama_peminjam_222291',
         'jumlah_222291',
         'tanggal_peminjaman_222291',
+        'jumlah_222291',
         'tanggal_pengembalian_222291',
         'status_peminjaman_222291',
+        'denda_222291',
     ];
 
     // Jika menggunakan kolom 'barang_id' yang berelasi

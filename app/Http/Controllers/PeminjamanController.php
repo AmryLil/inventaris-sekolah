@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Barang_222291;
 use App\Models\Peminjaman_222291;
 use Barryvdh\DomPDF\Facade\PDF;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PeminjamanController extends Controller
@@ -22,11 +23,27 @@ class PeminjamanController extends Controller
         return view('barang.sewa', compact('barang'));  // Tampilkan data barang di form sewa
     }
 
-    public function showList()
+    public function showList(Request $request)
     {
-        $peminjaman = Peminjaman_222291::with('barang')->get();
-        $barangList = Barang_222291::all();  // Ambil semua data barang
-        return view('peminjaman.index', compact('peminjaman', 'barangList'));  // Tampilkan data barang di form sewa
+        // Retrieve the date range filters from the request
+        $startDate = $request->input('start_date');
+        $endDate   = $request->input('end_date');
+
+        // Query the peminjaman with optional date filters
+        $peminjaman = Peminjaman_222291::with('barang')
+            ->when($startDate, function ($query) use ($startDate) {
+                return $query->where('tanggal_peminjaman_222291', '>=', $startDate);
+            })
+            ->when($endDate, function ($query) use ($endDate) {
+                return $query->where('tanggal_peminjaman_222291', '<=', $endDate);
+            })
+            ->get();
+
+        // Get all barang (items)
+        $barangList = Barang_222291::all();
+
+        // Return the view with filtered data
+        return view('peminjaman.index', compact('peminjaman', 'barangList'));
     }
 
     public function store(Request $request)
@@ -138,15 +155,89 @@ class PeminjamanController extends Controller
         return view('peminjaman.userpeminjaman', compact('peminjaman'));
     }
 
-    public function generatePDF()
+    public function generatePDF(Request $request)
     {
-        // Ambil data peminjaman dengan relasi barang
-        $peminjaman = Peminjaman_222291::with('barang')->get();
+        // Ambil filter tanggal dari request
+        $startDate = $request->input('start_date');
+        $endDate   = $request->input('end_date');
+
+        // Query data peminjaman dengan filter tanggal
+        $peminjaman = Peminjaman_222291::with('barang')
+            ->when($startDate, function ($query) use ($startDate) {
+                return $query->where('tanggal_peminjaman_222291', '>=', $startDate);
+            })
+            ->when($endDate, function ($query) use ($endDate) {
+                return $query->where('tanggal_peminjaman_222291', '<=', $endDate);
+            })
+            ->get();
 
         // Render view ke PDF
-        $pdf = PDF::loadView('peminjaman.pdf', ['peminjaman' => $peminjaman]);
+        $pdf = PDF::loadView('peminjaman.pdf', [
+            'peminjaman' => $peminjaman,
+            'startDate'  => $startDate,
+            'endDate'    => $endDate,
+        ]);
 
         // Unduh file PDF
-        return $pdf->download('data_peminjaman.pdf');
+        return $pdf->download('laporan_peminjaman.pdf');
+    }
+
+    public function returnLoan(Request $request, $id)
+    {
+        // Validasi input
+        $request->validate([
+            'tanggal_pengembalian_222291' => 'required|date',
+        ]);
+
+        // Ambil data peminjaman
+        $peminjaman = Peminjaman_222291::findOrFail($id);
+
+        // Ambil data barang terkait
+        $barang = Barang_222291::findOrFail($peminjaman->barang_id_222291);
+
+        // Hitung denda jika ada
+        $tanggalPengembalian = Carbon::parse($request->tanggal_pengembalian_222291);
+        $tanggalBatas        = Carbon::parse($peminjaman->tanggal_pengembalian_222291);
+        $denda               = 0;
+
+        if ($tanggalPengembalian->greaterThan($tanggalBatas)) {
+            $hariTerlambat = $tanggalPengembalian->diffInDays($tanggalBatas);
+            $denda         = $hariTerlambat * 20000;  // Denda Rp20.000 per hari
+        }
+
+        // Update status peminjaman
+        $peminjaman->update([
+            'tanggal_pengembalian_222291' => $request->tanggal_pengembalian_222291,
+            'status_peminjaman_222291'    => 'Dikembalikan',
+        ]);
+
+        // Kembalikan stok barang
+        $barang->increment('jumlah_222291', $peminjaman->jumlah_222291);
+
+        // Redirect dengan informasi denda
+        return redirect()->route('user.peminjaman')->with('success', 'Peminjaman berhasil dikembalikan. Total denda: Rp' . number_format($denda, 0, ',', '.'));
+    }
+
+    public function showListLaporan(Request $request)
+    {
+        // Retrieve the date range filters from the request
+        $startDate = $request->input('start_date');
+        $endDate   = $request->input('end_date');
+
+        // Query the peminjaman with optional date filters
+        $peminjaman = Peminjaman_222291::with('barang')
+            ->when($startDate, function ($query) use ($startDate) {
+                return $query->where('tanggal_peminjaman_222291', '>=', $startDate);
+            })
+            ->when($endDate, function ($query) use ($endDate) {
+                return $query->where('tanggal_peminjaman_222291', '<=', $endDate);
+            })
+            ->get();
+
+        // Get all barang (items)
+        $barangList = Barang_222291::all();
+
+        // Return the view with filtered data
+        return view('peminjaman.laporan', compact('peminjaman', 'barangList'));
     }
 }

@@ -12,9 +12,26 @@
             padding: 0;
         }
 
-        h1 {
+        .header {
             text-align: center;
-            font-size: 24px;
+            margin-top: 20px;
+        }
+
+        .header img {
+            width: 100px;
+            height: auto;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin: 10px 0;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 20px;
             margin-bottom: 20px;
         }
 
@@ -50,7 +67,12 @@
 </head>
 
 <body>
-    <h1>Daftar Peminjaman</h1>
+    <div class="header">
+        <!-- Pastikan path logo sudah benar -->
+        <img src="{{ public_path('images/logo.png') }}" alt="Logo Eduventory" width="30%">
+    </div>
+
+    <h2>Daftar Peminjaman</h2>
 
     <table>
         <thead>

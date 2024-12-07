@@ -84,15 +84,17 @@ Route::group(['middleware' => 'role:admin'], function () {
 });
 
 // Rute untuk peminjaman barang
-Route::get('/barang/{id}/sewa', [PeminjamanController::class,     'showSewaForm'])->name('barang.sewa');
-Route::post('/barang/{id}/sewa', [PeminjamanController::class,    'store'])->name('barang.sewa.store');
-Route::get('/peminjaman', [PeminjamanController::class,           'showList'])->name('peminjaman.showList');
-Route::get('/peminjaman/create', [PeminjamanController::class,    'create'])->name('peminjaman.create');
-Route::post('/peminjaman', [PeminjamanController::class,          'store'])->name('peminjaman.store');
-Route::get('/peminjaman/{id}/edit', [PeminjamanController::class, 'edit'])->name('peminjaman.edit');
-Route::put('/peminjaman/{id}', [PeminjamanController::class,      'update'])->name('peminjaman.update');
-Route::delete('/peminjaman/{id}', [PeminjamanController::class,   'destroy'])->name('peminjaman.destroy');
-Route::get('/peminjaman/{id}', [PeminjamanController::class,      'show'])->name('peminjaman.show');
+Route::get('/barang/{id}/sewa', [PeminjamanController::class,        'showSewaForm'])->name('barang.sewa');
+Route::post('/barang/{id}/sewa', [PeminjamanController::class,       'store'])->name('barang.sewa.store');
+Route::get('/peminjaman', [PeminjamanController::class,              'showList'])->name('peminjaman.showList');
+Route::get('/peminjaman/laporan', [PeminjamanController::class,      'showListLaporan'])->name('peminjaman.showListLaporan');
+Route::get('/peminjaman/create', [PeminjamanController::class,       'create'])->name('peminjaman.create');
+Route::post('/peminjaman', [PeminjamanController::class,             'store'])->name('peminjaman.store');
+Route::get('/peminjaman/{id}/edit', [PeminjamanController::class,    'edit'])->name('peminjaman.edit');
+Route::put('/peminjaman/{id}', [PeminjamanController::class,         'update'])->name('peminjaman.update');
+Route::delete('/peminjaman/{id}', [PeminjamanController::class,      'destroy'])->name('peminjaman.destroy');
+Route::get('/peminjaman/{id}', [PeminjamanController::class,         'show'])->name('peminjaman.show');
+Route::post('/peminjaman/{id}/return', [PeminjamanController::class, 'returnLoan'])->name('peminjaman.return');
 
 // Rute untuk user
 Route::group(['middleware' => 'role:user'], function () {

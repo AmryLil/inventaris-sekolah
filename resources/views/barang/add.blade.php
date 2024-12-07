@@ -42,19 +42,30 @@
                 @enderror
             </div>
 
+            {{-- Lokasi Dropdown --}}
             <div class="form-group mb-3">
                 <label for="lokasi_222291">Lokasi</label>
-                <input type="text" class="form-control @error('lokasi_222291') is-invalid @enderror" name="lokasi_222291"
-                    value="{{ old('lokasi_222291') }}" required>
+                <select name="lokasi_222291" class="form-control @error('lokasi_222291') is-invalid @enderror" required>
+                    <option value="">Pilih Lokasi</option>
+                    <option value="Kantor" {{ old('lokasi_222291') == 'Kantor' ? 'selected' : '' }}>Kantor</option>
+                    <option value="Kelas" {{ old('lokasi_222291') == 'Kelas' ? 'selected' : '' }}>Kelas</option>
+                    <option value="Lab" {{ old('lokasi_222291') == 'Lab' ? 'selected' : '' }}>Lab</option>
+                </select>
                 @error('lokasi_222291')
                     <span class="invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
 
+            {{-- Kondisi Dropdown --}}
             <div class="form-group mb-3">
                 <label for="kondisi_222291">Kondisi</label>
-                <input type="text" class="form-control @error('kondisi_222291') is-invalid @enderror"
-                    name="kondisi_222291" value="{{ old('kondisi_222291') }}" required>
+                <select name="kondisi_222291" class="form-control @error('kondisi_222291') is-invalid @enderror" required>
+                    <option value="">Pilih Kondisi</option>
+                    <option value="Baik" {{ old('kondisi_222291') == 'Baik' ? 'selected' : '' }}>Baik</option>
+                    <option value="Rusak" {{ old('kondisi_222291') == 'Rusak' ? 'selected' : '' }}>Rusak</option>
+                    <option value="Butuh Perbaikan" {{ old('kondisi_222291') == 'Butuh Perbaikan' ? 'selected' : '' }}>
+                        Butuh Perbaikan</option>
+                </select>
                 @error('kondisi_222291')
                     <span class="invalid-feedback">{{ $message }}</span>
                 @enderror

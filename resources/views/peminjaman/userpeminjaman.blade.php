@@ -10,15 +10,14 @@
             </span>
         </div>
 
-        <x-table title="Peminjaman" :createRoute="route('peminjaman.create')" :editRoute="'peminjaman.edit'" :loanRoute="'peminjaman.create'" :deleteRoute="'peminjaman.destroy'" :columns="[
-            ['label' => 'Nama Barang', 'field' => 'barang.nama_barang_222291', 'type' => 'text'], // Mengambil nama barang dari relasi
-            ['label' => 'Nama Peminjam', 'field' => 'nama_peminjam_222291', 'type' => 'text'],
-            ['label' => 'Jumlah Barang', 'field' => 'jumlah_222291', 'type' => 'number'],
-            ['label' => 'Tanggal Peminjaman', 'field' => 'tanggal_peminjaman_222291', 'type' => 'text'],
-            ['label' => 'Tanggal Pengembalian', 'field' => 'tanggal_pengembalian_222291', 'type' => 'text'],
-            ['label' => 'Status', 'field' => 'status_peminjaman_222291', 'type' => 'text'],
-        ]"
-            :data="$peminjaman" />
+        <x-table2 title="Peminjaman" :createRoute="route('peminjaman.create')" :editRoute="'peminjaman.edit'" :loanRoute="'peminjaman.create'" :deleteRoute="'peminjaman.destroy'"
+            :columns="[
+                ['label' => 'Nama Barang', 'field' => 'barang.nama_barang_222291', 'type' => 'text'], // Mengambil nama barang dari relasi
+                ['label' => 'Nama Peminjam', 'field' => 'nama_peminjam_222291', 'type' => 'text'],
+                ['label' => 'Jumlah Barang', 'field' => 'jumlah_222291', 'type' => 'number'],
+                ['label' => 'Tanggal Peminjaman', 'field' => 'tanggal_peminjaman_222291', 'type' => 'text'],
+                ['label' => 'Tanggal Pengembalian', 'field' => 'tanggal_pengembalian_222291', 'type' => 'text'],
+            ]" :data="$peminjaman" />
 
     </div>
 @endsection

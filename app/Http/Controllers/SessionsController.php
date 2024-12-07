@@ -18,14 +18,20 @@ class SessionsController extends Controller
     {
         // Validasi input
         $attributes = request()->validate([
-            'email_222291' => 'required|email',
-            'password_222291' => 'required',
+            'email_222291'    => 'required|email',
+            'password_222291' => 'required|min:8|max:10',
+        ], [
+            'email_222291.required'    => 'Email wajib diisi.',
+            'email_222291.email'       => 'Email harus berupa alamat email yang valid.',
+            'password_222291.required' => 'Password wajib diisi.',
+            'password_222291.min'      => 'Password harus terdiri dari tepat 8 karakter.',
+            'password_222291.max'      => 'Password harus terdiri dari tepat 8 karakter.',
         ]);
 
         // Coba login
         if (Auth::attempt([
             'email_222291' => $attributes['email_222291'],
-            'password' => $attributes['password_222291'],
+            'password'     => $attributes['password_222291'],
         ])) {
             // Regenerasi session untuk keamanan
             session()->regenerate();
@@ -34,7 +40,7 @@ class SessionsController extends Controller
             $user = Auth::user();
 
             // Simpan role pengguna dalam session
-            session(['role' => $user->role_222291]); // Pastikan kolom role ada di model User
+            session(['role' => $user->role_222291]);  // Pastikan kolom role ada di model User
 
             // Redirect berdasarkan role
             return redirect($user->role === 'admin' ? 'barang' : 'barang')
@@ -50,8 +56,8 @@ class SessionsController extends Controller
     // Proses logout
     public function destroy()
     {
-        Auth::logout(); // Logout pengguna
-        session()->forget('role'); // Hapus role dari session saat logout
+        Auth::logout();  // Logout pengguna
+        session()->forget('role');  // Hapus role dari session saat logout
         return redirect('/login')->with(['success' => 'Anda telah logout.']);
     }
 }

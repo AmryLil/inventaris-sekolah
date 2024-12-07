@@ -63,13 +63,11 @@ return new class extends Migration {
             $table->id('id_peminjaman_222291');
             $table->string('nama_peminjam_222291');  // Kolom ID unik untuk peminjaman
             $table->unsignedBigInteger('barang_id_222291');
-            $table->integer('jumlah_222291');  // Jumlah barang yang tersedia
-            // Foreign Key untuk barang
-            // $table->unsignedBigInteger('pengguna_id_222291'); // Foreign Key untuk pengguna
-            $table->date('tanggal_peminjaman_222291');  // Tanggal peminjaman barang
-            $table->date('tanggal_pengembalian_222291')->nullable();  // Tanggal pengembalian barang
-            $table->string('status_peminjaman_222291')->nullable();  // Status peminjaman (dipinjam, dikembalikan, dll.)
-
+            $table->integer('jumlah_222291');  // Jumlah barang yang dipinjam
+            $table->date('tanggal_peminjaman_222291')->nullable();  // Tanggal pengembalian
+            $table->date('tanggal_pengembalian_222291')->nullable();  // Tanggal pengembalian
+            $table->string('status_peminjaman_222291')->default('Dipinjam');  // Status (Dipinjam/Dikembalikan)
+            $table->integer('denda_222291')->default(0);  // Denda jika terlambat
             // Menambahkan foreign key constraints
             $table
                 ->foreign('barang_id_222291')

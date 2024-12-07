@@ -40,14 +40,16 @@
             <div class="mb-3">
                 <label for="tanggal_peminjaman_222291" class="form-label">Tanggal Peminjaman</label>
                 <input type="date" name="tanggal_peminjaman_222291" class="form-control"
-                    value="{{ old('tanggal_peminjaman_222291') }}" required>
+                    value="{{ old('tanggal_peminjaman_222291', \Carbon\Carbon::now()->toDateString()) }}" required
+                    id="tanggal_peminjaman">
             </div>
 
             {{-- Tanggal Pengembalian --}}
             <div class="mb-3">
                 <label for="tanggal_pengembalian_222291" class="form-label">Tanggal Pengembalian</label>
-                <input type="date" name="tanggal_pengembalian_222291" class="form-control"
-                    value="{{ old('tanggal_pengembalian_222291') }}">
+                <input type="date" name="tanggal_pengembalian_222291" class="form-control" id="tanggal_pengembalian"
+                    value="{{ old('tanggal_pengembalian_222291', \Carbon\Carbon::now()->addDays(7)->toDateString()) }}"
+                    required>
             </div>
 
             {{-- Jumlah Peminjaman --}}
@@ -63,4 +65,21 @@
             <button type="submit" class="btn btn-primary">Tambah Peminjaman</button>
         </form>
     </div>
+
+    <script>
+        // Set tanggal pengembalian to 7 days after peminjaman when peminjaman date is selected
+        document.getElementById('tanggal_peminjaman').addEventListener('change', function() {
+            var tanggalPeminjaman = new Date(this.value);
+            tanggalPeminjaman.setDate(tanggalPeminjaman.getDate() + 7); // Tambahkan 7 hari
+
+            // Format the date to YYYY-MM-DD for the input field
+            var tahun = tanggalPeminjaman.getFullYear();
+            var bulan = ("0" + (tanggalPeminjaman.getMonth() + 1)).slice(-2); // Tambahkan leading zero pada bulan
+            var hari = ("0" + tanggalPeminjaman.getDate()).slice(-2); // Tambahkan leading zero pada hari
+
+            // Set the tanggal pengembalian field with the new date
+            var tanggalPengembalian = document.getElementById('tanggal_pengembalian');
+            tanggalPengembalian.value = tahun + '-' + bulan + '-' + hari;
+        });
+    </script>
 @endsection

@@ -48,8 +48,18 @@
 
             <div class="form-group">
                 <label for="lokasi_222291">Lokasi</label>
-                <input type="text" class="form-control @error('lokasi_222291') is-invalid @enderror" name="lokasi_222291"
-                    value="{{ old('lokasi_222291', $barang->lokasi_222291) }}" required>
+                <select name="lokasi_222291" class="form-control @error('lokasi_222291') is-invalid @enderror" required>
+                    <option value="">Pilih Lokasi</option>
+                    <option value="Kantor" {{ old('lokasi_222291', $barang->lokasi_222291) == 'Kantor' ? 'selected' : '' }}>
+                        Kantor</option>
+                    <option value="Kelas" {{ old('lokasi_222291', $barang->lokasi_222291) == 'Kelas' ? 'selected' : '' }}>
+                        Kelas
+                    </option>
+                    <option value="Lab" {{ old('lokasi_222291', $barang->lokasi_222291) == 'Lab' ? 'selected' : '' }}>
+                        Lab
+                    </option>
+                    <!-- Tambahkan lokasi lainnya sesuai kebutuhan -->
+                </select>
                 @error('lokasi_222291')
                     <span class="invalid-feedback">{{ $message }}</span>
                 @enderror
@@ -57,8 +67,17 @@
 
             <div class="form-group">
                 <label for="kondisi_222291">Kondisi</label>
-                <input type="text" class="form-control @error('kondisi_222291') is-invalid @enderror"
-                    name="kondisi_222291" value="{{ old('kondisi_222291', $barang->kondisi_222291) }}" required>
+                <select name="kondisi_222291" class="form-control @error('kondisi_222291') is-invalid @enderror" required>
+                    <option value="">Pilih Kondisi</option>
+                    <option value="Baik"
+                        {{ old('kondisi_222291', $barang->kondisi_222291) == 'Baik' ? 'selected' : '' }}>Baik</option>
+                    <option value="Rusak"
+                        {{ old('kondisi_222291', $barang->kondisi_222291) == 'Rusak' ? 'selected' : '' }}>Rusak</option>
+                    <option value="Perlu Perawatan"
+                        {{ old('kondisi_222291', $barang->kondisi_222291) == 'Perlu Perawatan' ? 'selected' : '' }}>Perlu
+                        Perawatan</option>
+                    <!-- Tambahkan kondisi lainnya sesuai kebutuhan -->
+                </select>
                 @error('kondisi_222291')
                     <span class="invalid-feedback">{{ $message }}</span>
                 @enderror

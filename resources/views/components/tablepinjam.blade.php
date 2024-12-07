@@ -1,3 +1,5 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
 <div class="row">
     <div class="col-12">
         <div class="card mb-4 mx-4">
@@ -64,6 +66,7 @@
                                                 data-bs-original-title="Edit {{ $title }}">
                                                 <i class="fas fa-user-edit text-secondary"></i>
                                             </a>
+
                                             <span>
                                                 <i class="cursor-pointer fas fa-trash text-secondary"
                                                     onclick="confirm('Are you sure?') && document.getElementById('delete-form-{{ $item->id_peminjaman_222291 }}').submit()"></i>

@@ -10,11 +10,31 @@ use Illuminate\Http\Request;
 class BarangController_222291 extends Controller
 {
     // 1. Menampilkan daftar barang
-    public function index()
+    public function index(Request $request)
     {
-        $barang      = Barang_222291::with('kategori')->get();
-        $totalJumlah = Barang_222291::sum('jumlah_222291');  // Load barang with categories
-        return view('barang.index', compact('barang', 'totalJumlah'));  // Pass to view
+        // Retrieve filter parameters from the request
+        $startDate = $request->input('start_date');
+        $endDate   = $request->input('end_date');
+
+        // Build query with potential filters
+        $query = Barang_222291::with('kategori');
+
+        if ($startDate) {
+            $query->whereDate('tanggal_masuk_222291', '>=', $startDate);  // Filter by start date
+        }
+
+        if ($endDate) {
+            $query->whereDate('tanggal_masuk_222291', '<=', $endDate);  // Filter by end date
+        }
+
+        // Get the filtered barang records
+        $barang = $query->get();
+
+        // Calculate total jumlah_222291
+        $totalJumlah = Barang_222291::sum('jumlah_222291');
+
+        // Return the view with filtered barang data
+        return view('barang.index', compact('barang', 'totalJumlah'));
     }
 
     // 2. Menampilkan form tambah barang

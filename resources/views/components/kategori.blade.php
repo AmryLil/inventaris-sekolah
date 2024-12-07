@@ -1,3 +1,4 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 <div class="row">
     <div class="col-12">
         <div class="card mb-4 mx-4">
@@ -23,7 +24,8 @@
                                     </th>
                                 @endforeach
 
-                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                <th
+                                    class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                     Action
                                 </th>
                             </tr>
@@ -41,8 +43,8 @@
 
                                     <td class="text-center">
                                         @if (session('role') === 'admin')
-                                            <a href="{{ route($editRoute, $item->id_kategori_222291) }}"
-                                                class="mx-3" data-bs-toggle="tooltip"
+                                            <a href="{{ route($editRoute, $item->id_kategori_222291) }}" class="mx-3"
+                                                data-bs-toggle="tooltip"
                                                 data-bs-original-title="Edit {{ $title }}">
                                                 <i class="fas fa-user-edit text-secondary"></i>
                                             </a>
